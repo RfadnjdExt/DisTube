@@ -5,7 +5,7 @@
     "moduleResolution": "node",
     "lib": ["ESNext"],
     "target": "ES2021",
-    "emitDecoratorMetadata": true,
+    "emitDecoratorMetadata": false,
     "experimentalDecorators": true,
     "useDefineForClassFields": true,
     "allowUnreachableCode": false,
@@ -28,6 +28,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "downlevelIteration": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "isolatedModules": true
   }
 }

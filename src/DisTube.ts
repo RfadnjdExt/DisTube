@@ -57,6 +57,7 @@ export class DisTube extends TypedEmitter<TypedDisTubeEvents> {
    * Create a new DisTube class.
    * @param {Discord.Client} client Discord.JS client
    * @param {DisTubeOptions} [otp] Custom DisTube options
+   * @throws {DisTubeError}
    * @example
    * const Discord = require('discord.js'),
    *     DisTube = require('distube'),

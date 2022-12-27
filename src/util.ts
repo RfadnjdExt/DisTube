@@ -57,16 +57,17 @@ export function parseNumber(input: any): number {
   if (typeof input === "string") return Number(input.replace(/[^\d.]+/g, "")) || 0;
   return Number(input) || 0;
 }
+const SUPPORTED_PROTOCOL = ["https:", "http:", "file:"] as const;
 /**
  * Check if the string is an URL
  * @param {string} input input
  * @returns {boolean}
  */
-export function isURL(input: any): input is `http://${string}` | `https://${string}` {
+export function isURL(input: any): input is `${(typeof SUPPORTED_PROTOCOL)[number]}//${string}` {
   if (typeof input !== "string" || input.includes(" ")) return false;
   try {
     const url = new URL(input);
-    if (!["https:", "http:"].includes(url.protocol) || !url.host) return false;
+    if (!SUPPORTED_PROTOCOL.some(p => p === url.protocol)) return false;
   } catch {
     return false;
   }
@@ -121,7 +122,6 @@ export function isTextChannelInstance(channel: any): channel is GuildTextBasedCh
     isSnowflake(channel.guildId) &&
     typeof channel.name === "string" &&
     Constants.TextBasedChannelTypes.includes(channel.type) &&
-    typeof channel.nsfw === "boolean" &&
     "messages" in channel &&
     typeof channel.send === "function"
   );
@@ -197,4 +197,10 @@ type KeyOf<T> = T extends object ? (keyof T)[] : [];
 export function objectKeys<T>(obj: T): KeyOf<T> {
   if (!isObject(obj)) return [] as KeyOf<T>;
   return Object.keys(obj) as KeyOf<T>;
+}
+
+export function isNsfwChannel(channel?: GuildTextBasedChannel): boolean {
+  if (!isTextChannelInstance(channel)) return false;
+  if (channel.isThread()) return channel.parent?.nsfw ?? false;
+  return channel.nsfw;
 }
