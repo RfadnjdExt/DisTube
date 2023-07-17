@@ -232,6 +232,7 @@ export type RelatedSong = Omit<Song, "related">;
  * <= 0 to add to the end of the queue.
  */
 export type PlayHandlerOptions = {
+  interaction?: Interaction;
   skip?: boolean;
   position?: number;
   textChannel?: GuildTextBasedChannel;
