@@ -320,7 +320,7 @@ export class DisTubeHandler extends DisTubeBase {
    */
   async playSong(voiceChannel: VoiceBasedChannel, song: Song, options: PlayHandlerOptions = {}): Promise<void> {
     if (!(song instanceof Song)) throw new DisTubeError("INVALID_TYPE", "Song", song, "song");
-    const { textChannel, skip } = { skip: false, ...options };
+    const { interaction, textChannel, skip } = { skip: false, ...options };
     const position = Number(options.position) || (skip ? 1 : 0);
 
     const queue = this.queues.get(voiceChannel);
@@ -335,7 +335,7 @@ export class DisTubeHandler extends DisTubeBase {
     } else {
       const newQueue = await this.queues.create(voiceChannel, song, textChannel);
       if (newQueue instanceof Queue) {
-        if (this.options.emitAddSongWhenCreatingQueue) this.emit("addSong", newQueue, song);
+        if (this.options.emitAddSongWhenCreatingQueue) this.emit("addSong", newQueue, song, interaction);
         this.emit("playSong", newQueue, song);
       }
     }
