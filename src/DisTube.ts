@@ -164,7 +164,7 @@ export class DisTube extends TypedEmitter<TypedDisTubeEvents> {
     }
     if (!isObject(options)) throw new DisTubeError("INVALID_TYPE", "object", options, "options");
 
-    const { textChannel, member, skip, message, metadata } = {
+    const { interaction, textChannel, member, skip, message, metadata } = {
       member: voiceChannel.guild.members.me ?? undefined,
       textChannel: options?.message?.channel,
       skip: false,
@@ -206,7 +206,7 @@ export class DisTube extends TypedEmitter<TypedDisTubeEvents> {
       if (song instanceof Playlist) {
         await this.handler.playPlaylist(voiceChannel, song, { textChannel, skip, position });
       } else {
-        await this.handler.playSong(voiceChannel, song, { textChannel, skip, position });
+        await this.handler.playSong(voiceChannel, song, { interaction, textChannel, skip, position });
       }
     } catch (e: any) {
       if (!(e instanceof DisTubeError)) {
