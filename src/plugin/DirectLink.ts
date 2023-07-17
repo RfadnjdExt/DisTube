@@ -8,7 +8,7 @@ export class DirectLinkPlugin extends ExtractorPlugin {
       const headers = await request(url, { method: "HEAD" }).then(res => res.headers);
       const type = headers["content-type"];
 
-      if (type?.startsWith("audio")) return true;
+      if ((type as string)?.startsWith("audio")) return true;
     } catch {}
     return false;
   }
