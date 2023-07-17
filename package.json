@@ -20,10 +20,10 @@
     "prettier": "prettier --write \"**/*.{ts,json,yml,yaml,md}\"",
     "build": "tsup",
     "build:check": "tsc --noEmit",
-    "update": "ncu -u && yarn up '**' -R",
+    "update": "ncu -u && npm update",
     "postinstall": "husky install",
-    "prepublishOnly": "yarn lint && yarn test",
-    "prepack": "yarn build && pinst --disable",
+    "prepublishOnly": "npm run lint && npm run test",
+    "prepack": "npm run build && pinst --disable",
     "postpack": "pinst --enable"
   },
   "repository": {
@@ -119,7 +119,7 @@
     ]
   },
   "engines": {
-    "node": ">=16.9.0"
-  },
-  "packageManager": "yarn@3.2.0"
+    "node": ">=16.9.0",
+    "yarn": "YARN NO LONGER USED - use npm instead."
+  }
 }

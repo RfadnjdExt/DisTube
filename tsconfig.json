@@ -18,7 +18,7 @@
     "strict": true,
     "declaration": true,
     "importHelpers": true,
-    "importsNotUsedAsValues": "error",
+    "verbatimModuleSyntax": false,
     "inlineSources": true,
     "newLine": "lf",
     "noEmitHelpers": true,
