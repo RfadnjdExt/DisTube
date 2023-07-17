@@ -23,6 +23,7 @@
     "update": "ncu -u && npm update",
     "prepublishOnly": "npm run lint && npm run test",
     "prepack": "npm run build && pinst --disable",
+    "prepare": "npm run prepack",
     "postpack": "pinst --enable"
   },
   "repository": {
