@@ -22,16 +22,10 @@
     "build:check": "tsc --noEmit",
     "update": "ncu -u && npm update",
     "postinstall": "husky install",
-<<<<<<< HEAD
     "prepublishOnly": "yarn lint && yarn test",
     "prepack": "yarn build && pinst --disable",
     "postpack": "pinst --enable",
     "dev:add-docs-to-worktree": "git worktree add --track -b docs docs origin/docs"
-=======
-    "prepublishOnly": "npm run lint && npm run test",
-    "prepack": "npm run build && pinst --disable",
-    "postpack": "pinst --enable"
->>>>>>> 💥 fix(package.json): mengganti perintah `yarn update` menjadi `npm update`
   },
   "repository": {
     "type": "git",
@@ -127,14 +121,7 @@
     ]
   },
   "engines": {
-<<<<<<< HEAD
-    "node": ">=16.9.0"
-  },
-  "packageManager": "yarn@3.6.1"
-}
-=======
     "node": ">=16.9.0",
     "yarn": "YARN NO LONGER USED - use npm instead."
   }
 }
->>>>>>> 💥 fix(package.json): mengganti perintah `yarn update` menjadi `npm update`
