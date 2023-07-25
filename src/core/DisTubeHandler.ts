@@ -367,27 +367,4 @@ export class DisTubeHandler extends DisTubeBase {
       }
     }
   }
-
-  /**
-   * Get {@link Song}'s stream info and attach it to the song.
-   * @param {Song} song A Song
-   */
-  async attachStreamInfo(song: Song) {
-    const { url, source, formats, streamURL, isLive } = song;
-    if (source === "youtube") {
-      if (!formats || !chooseBestVideoFormat(formats, isLive)) {
-        song._patchYouTube(await this.handler.getYouTubeInfo(url));
-      }
-    } else if (!streamURL) {
-      for (const plugin of [...this.distube.extractorPlugins, ...this.distube.customPlugins]) {
-        if (await plugin.validate(url)) {
-          const info = [plugin.getStreamURL(url), plugin.getRelatedSongs(url)] as const;
-          const result = await Promise.all(info);
-          song.streamURL = result[0];
-          song.related = result[1];
-          break;
-        }
-      }
-    }
-  }
 }

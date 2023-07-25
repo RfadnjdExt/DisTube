@@ -6,15 +6,9 @@ export class DirectLinkPlugin extends ExtractorPlugin {
   override async validate(url: string) {
     try {
       const headers = await request(url, { method: "HEAD" }).then(res => res.headers);
-<<<<<<< HEAD
-      const type = headers["content-type"];
-
-      if ((type as string)?.startsWith("audio")) return true;
-=======
       const types = headers["content-type"];
       const type = Array.isArray(types) ? types[0] : types;
       if (["audio/", "video/", "application/ogg"].some(s => type?.startsWith(s))) return true;
->>>>>>> upstream/stable
     } catch {}
     return false;
   }

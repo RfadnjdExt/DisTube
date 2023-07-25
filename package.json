@@ -24,7 +24,8 @@
     "prepublishOnly": "yarn lint && yarn test",
     "prepack": "yarn build && pinst --disable",
     "postpack": "pinst --enable",
-    "dev:add-docs-to-worktree": "git worktree add --track -b docs docs origin/docs"
+    "dev:add-docs-to-worktree": "git worktree add --track -b docs docs origin/docs",
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",

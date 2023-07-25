@@ -18,10 +18,6 @@
     "strict": true,
     "declaration": true,
     "importHelpers": true,
-<<<<<<< HEAD
-=======
-    "verbatimModuleSyntax": false,
->>>>>>> 💥 fix(package.json): mengganti perintah `yarn update` menjadi `npm update`
     "inlineSources": true,
     "newLine": "lf",
     "noEmitHelpers": true,
