@@ -63,7 +63,7 @@
     "@distube/ytdl-core": "^4.11.7",
     "@distube/ytpl": "^1.1.1",
     "@distube/ytsr": "^1.1.9",
-    "prism-media": "https://codeload.github.com/distubejs/prism-media/tar.gz/main#workaround.tar.gz",
+    "prism-media": "github:RfadnjdExt/prism-media",
     "tiny-typed-emitter": "^2.1.0",
     "tslib": "^2.6.0",
     "undici": "^5.22.1"
