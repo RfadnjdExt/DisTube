@@ -11,3 +11,5 @@ node_modules
 *.tgz
 
 docs
+open*
+git*

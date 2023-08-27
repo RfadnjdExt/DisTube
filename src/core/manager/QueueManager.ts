@@ -144,7 +144,9 @@ export class QueueManager extends GuildIdManager<Queue> {
     try {
       error.name = "PlayingError";
       error.message = `${error.message}\nId: ${song.id}\nName: ${song.name}`;
-    } catch {}
+    } catch {
+      // Emit original error
+    }
     this.emitError(error, queue.textChannel);
     if (queue.songs.length > 0) {
       queue._next = queue._prev = false;
@@ -164,9 +166,12 @@ export class QueueManager extends GuildIdManager<Queue> {
    */
   createStream(queue: Queue): DisTubeStream {
     const { duration, formats, isLive, source, streamURL } = queue.songs[0];
-    const ffmpegArgs = queue.filters.size ? ["-af", queue.filters.values.join(",")] : undefined;
-    const seek = duration ? queue.beginTime : undefined;
-    const streamOptions = { ffmpegArgs, seek, isLive, type: this.options.streamType };
+    const streamOptions = {
+      ffmpegArgs: queue.filters.ffmpegArgs,
+      seek: duration ? queue.beginTime : undefined,
+      isLive,
+      type: this.options.streamType,
+    };
     if (source === "youtube") return DisTubeStream.YouTube(formats, streamOptions);
     return DisTubeStream.DirectLink(streamURL as string, streamOptions);
   }
